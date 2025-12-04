@@ -173,19 +173,19 @@ AVLNode* deleteNode(AVLNode* root, int val) {
     // 重新平衡
     
     // LL情况
-    if (balance > 1 && getBalanceFactor(root) >= 0) { 
+    if (balance > 1 && getBalanceFactor(root) >= 0) {  
         return rightRotate(root); 
     } 
     // LR情况
-    if (balance > 1 && getBalanceFactor(root) < 0) {
-        return leftRightRotate(root); 
+    if (balance > 1 && getBalanceFactor(root) < 0) { 
+        return leftRightRotate(root);  
     } 
     // RR情况
-    if (balance < -1 && getBalanceFactor(root) <= 0) {
+    if (balance < -1 && getBalanceFactor(root) <= 0) { 
         return leftRotate(root); 
     } 
     // RL情况 
-    if (balance < -1 && getBalanceFactor(root) > 0) {
+    if (balance < -1 && getBalanceFactor(root) > 0) { 
         return leftRightRotate(root); 
     } 
     return root; 
