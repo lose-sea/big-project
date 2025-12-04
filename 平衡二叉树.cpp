@@ -62,9 +62,13 @@ AVLNode* leftRotate(AVLNode* x) {
 // 左右旋(LR型失衡)
 // 先对左子树左旋,再对当前节点右旋
 AVLNode* leftRightRotate(AVLNode* z) { 
-    
-    AVLNode* 
-}
+    z->left = leftRotate(z->left); 
+    return rightRotate(z); 
+} 
+
+
+// 右左旋
+// 先对右孩子左旋,再
 
 
 
