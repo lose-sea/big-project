@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     "/Users/lose_sea/Documents/github/big-project/文件操作/output/文件操作"
+relocations:     []
+...
