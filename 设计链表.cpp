@@ -79,9 +79,16 @@ public :
         if (head == nullptr) {
             return;  
         }  
-        if (head->next == nullptr) { 
-            dele
+        ListNode* curr = head; 
+        if  (head->next == nullptr) {
+            delete head; 
+            head = nullptr; 
+            return; 
         }
-        ListNode* curr = 
+        while (curr->next->next != nullptr) {
+            curr = curr->next; 
+        } 
+        delete curr->next; 
+        curr->next = nullptr; 
     }
 }; 
