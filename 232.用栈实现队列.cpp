@@ -22,18 +22,15 @@ public:
             outStack.push(inStack.top()); 
             inStack.pop(); 
         }
-    }
+    } 
 
-    MyQueue() {
-        
-    }
-    
+
     void push(int x) {
         inStack.push(x); 
     }
     
     int pop() {
-        if (outStack.empty()) {
+        if (outStack.empty()) { 
             in2out(); 
         } 
         int x = outStack.top();  
