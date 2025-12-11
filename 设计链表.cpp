@@ -90,5 +90,20 @@ public :
         } 
         delete curr->next; 
         curr->next = nullptr; 
-    }
+    } 
 }; 
+
+    // 链表反转
+    ListNode* reverse(ListNode* head) {
+        if (head == nullptr || head->next == nullptr) {
+            return head; 
+        } 
+        ListNode* newhead = reverse(head->next); 
+        head->next->next = head; 
+        head->next = nullptr; 
+        return newhead; 
+    } 
+
+
+
+
