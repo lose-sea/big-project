@@ -86,9 +86,14 @@ int main() {
     } 
     // 打开成功 
     // 二进制的方式写
-    fwrite(&s, sizeof(struct S), 1, pf); 
-    printf("%s %d %f\n", s.arr, s.age, s.score); 
+    size_t count = fwrite(&s, sizeof(struct S), 1, pf); 
+    if (count) {
+        printf("%s %d %f\n", s.arr, s.age, s.score); 
+    }
+    // 文件写入成功
     fclose(pf); 
     pf = nullptr; 
     return 0; 
-}
+} 
+
+
