@@ -73,16 +73,17 @@ public:
     void modify(string name, char rarity) {
         ListNode* curr = head; 
         while (curr != nullptr) {
-            if (curr->name == name) {
+            if (curr->name == name) { 
+                cout << "已将" << name << "的熟练度改为" << rarity << endl; 
                 curr->rarity = rarity; 
                 return; 
             }
             curr = curr->next; 
         } 
-        cout << "已将" << name << "的熟练度改为" << rarity << endl; 
+        cout << "没有找到" << endl; 
     } 
 
-    
+
     // 打印链表
     void printList() {
         ListNode* curr = head; 
