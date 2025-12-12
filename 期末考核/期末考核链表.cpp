@@ -83,6 +83,47 @@ public:
         cout << "没有找到" << endl; 
     } 
 
+    // 将链表保存到文件中
+    void saveToFile(char* filename) {
+        FILE* pf = fopen(filename, "w"); 
+        if (pf == nullptr) {
+            cout << "文件打开失败\n" << endl; 
+            return; 
+        }  
+        ListNode* curr = head;  
+        while (curr != NULL) {
+            fprintf(pf, "%s %c\n", curr->name, curr->rarity);  
+            curr = curr->next; 
+        } 
+        fclose(pf);  
+        pf = nullptr;  
+        cout << "数据已保存到文件" << endl; 
+    } 
+
+
+    // 从文件中读取数据并创建链表
+    ListNode* loadFromFile(char* filename) {
+        FILE* pf = fopen(filename, "r"); 
+        if (pf == nullptr) {
+            cout << "文件打开失败\n" << endl;  
+            return nullptr; 
+        } 
+        char name[100]; 
+        char rarity; 
+        ListNode* dummy = new ListNode(); 
+        ListNode* curr = dummy; 
+        while (fscanf(pf, "%s %c", name, &rarity) == 2) {
+            // 创建新节点
+            ListNode* newNode = new ListNode(name, rarity); 
+            curr->next = newNode; 
+            curr = curr->next; 
+        }  
+        fclose(pf); 
+        cout << "数据已从文件中读取"  << endl; 
+        ListNode* temp = dummy->next; 
+        delete dummy; 
+        return temp; 
+    }
 
     // 打印链表
     void printList() {
@@ -122,40 +163,6 @@ int main() {
     s.modify(name03, ch); 
     s.printList(); 
 
-
-
-    // 将链表保存到文件
-    FILE* pf = fopen("test.txt", "w"); 
-    if (pf == nullptr) {
-        cout << "打开文件失败" << endl; 
-    } 
-    ListNode* curr = s.head; 
-    while (curr != nullptr) { 
-        fprintf(pf, "%s %c\n", curr->name.c_str(), curr->rarity); 
-        curr = curr->next; 
-    }
-    fclose(pf); 
-    printf("数据已经保存到文件");  
-
-
-    // 从文件中读取信息并重建链表
-    pf = fopen("test.txt", "r"); 
-    if (pf == nullptr) {
-        printf("无法打开文件\n"); 
-        return 0;  
-    }
-    
-    // 创建初识链表
-    heroList m; 
-    char c_name[99]; 
-    char rarity; 
-    while (fscanf(pf, "%s %c", c_name, &rarity) == 2) {
-        string name(c_name); 
-        m.insertAtTail(name, rarity); 
-    } 
-    fclose(pf); 
-    cout << "已将数据从文件中读取\n" << endl; 
-    m.printList(); 
 
     return 0; 
 }
