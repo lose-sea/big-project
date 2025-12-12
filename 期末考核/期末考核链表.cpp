@@ -32,7 +32,7 @@ public:
                 curr = curr->next; 
             } 
             curr->next = node; 
-        }
+        } 
     }
 
 
@@ -98,8 +98,8 @@ public:
         fclose(pf);  
         pf = nullptr;  
         cout << "数据已保存到文件" << endl; 
-    } 
-
+    }  
+ 
 
     // 从文件中读取数据并创建链表
     ListNode* loadFromFile(char* filename) {
