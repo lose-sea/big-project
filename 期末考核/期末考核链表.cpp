@@ -30,7 +30,7 @@ public:
             ListNode* curr = head; 
             while (curr->next != nullptr) {
                 curr = curr->next; 
-            }
+            } 
             curr->next = node; 
         }
     }
@@ -81,6 +81,8 @@ public:
         } 
         cout << "已将" << name << "的熟练度改为" << rarity << endl; 
     } 
+
+    
     // 打印链表
     void printList() {
         ListNode* curr = head; 
