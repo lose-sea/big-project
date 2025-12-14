@@ -21,7 +21,7 @@ public:
     MyStack() {
         
     }
-    
+        
     void push(int x) {
         queue2.push(x); 
         while (!queue1.empty()) {
