@@ -128,6 +128,4 @@ public:
         return isMaxHeap ? "最大堆" : "最小堆";
     }
 
-
-
 }; 
