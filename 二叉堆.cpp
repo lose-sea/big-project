@@ -17,7 +17,21 @@ public:
         return isMaxHeap ? a > b : a < b; 
     } 
 
+    // 获取父节点索引
+    int parent(int index) {
+        return (index - 1) / 2; 
+    } 
 
+    // 获取左孩子索引
+    int leftChild(int index) {
+        return 2 * index + 1; 
+    } 
+
+    // 获取有孩子索引
+    int rightChild(int index) {
+        return 2 * index + 2; 
+    } 
+ 
     // 上浮操作
     void heapifyUp(int index) {
         while (index > 0) {
@@ -57,5 +71,63 @@ public:
         } 
     } 
 
-    // 构造函数
+    // 构造函数 
+    Heap(bool maxHeap = true) : isMaxHeap(maxHeap) {} 
+
+
+    // 从数组建堆的构造函数
+    Heap(const vector<int>& arr, bool maxHeap = true) : isMaxHeap(maxHeap) {
+        heap = arr;
+        // 从最后一个非叶子节点开始建堆
+        for (int i = heap.size() / 2 - 1; i >= 0; i--) {
+            heapifyDown(i);
+        }
+    } 
+
+    // 插入元素
+    void push(int value) {
+        heap.push_back(value); 
+        heapifyUp(heap.size() - 1); 
+    }  
+
+    // 删除堆顶元素
+    void pop() {
+        if (heap.empty()) {
+            cout << "堆为空，无法删除！" << endl;
+            return;
+        }
+        heap[0] = heap.back();
+        heap.pop_back();
+        
+        if (!heap.empty()) {
+            heapifyDown(0);
+        }
+    } 
+
+    // 获取堆顶元素
+    int top() {
+        if (heap.empty()) {
+            cout << "堆为空！" << endl;
+            return -1;
+        }
+        return heap[0];
+    }
+    
+    // 堆是否为空
+    bool empty() {
+        return heap.empty();
+    }
+    
+    // 获取堆大小
+    int size() {
+        return heap.size();
+    }
+    
+    // 获取堆类型
+    string getType() {
+        return isMaxHeap ? "最大堆" : "最小堆";
+    }
+
+
+
 }; 
