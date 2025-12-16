@@ -49,9 +49,10 @@ void addPerson(struct Addressbooks* abs) {
     } 
 
     cout << "请输入年龄" << endl; 
-    int age = 0; 
+    string age; 
     cin >> age; 
-    abs->personArrat[abs->size].age = age; 
+    int m_age = stoi(age); 
+    abs->personArrat[abs->size].age = m_age; 
 
     cout << "请输入联系方式" << endl; 
     string phone; 
@@ -63,6 +64,26 @@ void addPerson(struct Addressbooks* abs) {
     cin >> addr; 
     abs->personArrat[abs->size].addr = addr; 
 
+    abs->size++;        // 添加成功后通讯录人数加 1
+}  
+
+// 显示联系人
+void showPerson(Addressbooks* abs) {
+    // 判断通讯录人数是否为0
+    if (abs->size == 0) {
+        cout << "通讯录为空" << endl; 
+        return; 
+    } 
+    cout << "联系人" << endl; 
+    for (auto s : abs->personArrat) {
+        cout << s.name << endl; 
+        cout << s.sex << endl; 
+        cout << s.age << endl; 
+        cout << s.phone << endl; 
+        cout << s.addr << endl; 
+    } 
+    system("pause");   // 按任意键继续
+    system("cls");      //  清屏
 }
 
 
@@ -95,12 +116,14 @@ int main() {
         showMenu(); 
         // 创建用户选择输入的变量
         int select = 0; 
+        cout << "请选择" << endl; 
         cin >> select; 
         switch(select) {
             case 1 :        // 1. 添加联系人 
                 addPerson(&abs);   
                 break; 
             case 2 :        // 2. 显示联系人 
+                showPerson(&abs); 
                 break; 
             case 3 :        // 3. 删除联系人
                 break; 
@@ -117,8 +140,6 @@ int main() {
             default : 
                 break; 
         }
-        system("pause"); 
-        system("cls"); 
     }
     system("pause"); 
     system("cls"); 
