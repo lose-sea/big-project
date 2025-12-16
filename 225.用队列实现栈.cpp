@@ -1,4 +1,4 @@
-+/*
+/*
  * @lc app=leetcode.cn id=225 lang=cpp
  *
  * [225] 用队列实现栈

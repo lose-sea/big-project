@@ -123,9 +123,9 @@ public:
         return heap.size();
     }
     
-    // 获取堆类型
-    string getType() {
-        return isMaxHeap ? "最大堆" : "最小堆";
-    }
+    // 获取堆类型 
+    string getType() {  
+        return isMaxHeap ? "最大堆" : "最小堆"; 
+    }  
 
 }; 
