@@ -10,7 +10,7 @@
 #include<string> 
 using namespace std; 
 
-
+// 老师类
 class Teacther { 
 public: 
     string name;        // 姓名
@@ -21,14 +21,22 @@ public:
 }; 
 
 
-
+// 学生类
 class Student {
 public: 
     string name;        // 姓名
     string id;          // 学号 
     int age;            // 年龄
-    string sex;         // 
-}; 
+    string sex;         // 性别
+    string phone;       // 电话
+    Teacther teacher[5]; // 老师 
+    int Chinese;        // 语文成绩
+    int math;           // 数学成绩
+    int English;        // 英语成绩 
+    string major;       // 专业
+};
+
+
 
 
 
