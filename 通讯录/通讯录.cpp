@@ -26,7 +26,8 @@ struct Addressbooks {
 
 
 // 添加联系人功能
-void addPerson(struct Addressbooks* abs) {
+void addPerson(struct Addressbooks* abs) { 
+    system("cls"); 
     if (abs->size == MAX) {
         cout << "通讯录已满, 无法添加" << endl; 
         return; 
@@ -73,15 +74,19 @@ void addPerson(struct Addressbooks* abs) {
     abs->personArray[abs->size].addr = addr; 
 
     abs->size++;        // 添加成功后通讯录人数加 1
+    system("pause"); 
+    system("cls"); 
 }  
 
 // 显示联系人
-void showPerson(Addressbooks* abs) {
+void showPerson(Addressbooks* abs) { 
+    system("cls"); 
+    cout << "当前通讯录人数 : " << abs->size << endl; 
     // 判断通讯录人数是否为0 
-    if (abs->size == 0) {
-        cout << "通讯录为空" << endl; 
-        return; 
-    } 
+    if (abs->size == 0) {  
+        cout << "通讯录为空" << endl;   
+        return;   
+    }   
     cout << "联系人" << endl; 
     for (int i = 0; i < abs->size; i++) {
         cout << abs->personArray[i].name << endl; 
@@ -92,9 +97,66 @@ void showPerson(Addressbooks* abs) {
     } 
     system("pause");   // 按任意键继续
     system("cls");      //  清屏
-}
+} 
+  
+// 删除联系人
+void deletePerson(Addressbooks* abs) { 
+    system("cls"); 
+    if (abs->size == 0) {
+        cout << "通讯录为空, 无法删除" << endl; 
+        return;  
+    } 
+    else {
+        cout << "请输入你要删除的联系人" << endl; 
+        string name; 
+        cin >> name; 
+        for (int i = 0; i < abs->size; i++) {
+            if (abs->personArray[i].name == name) {
+                for (int j = i; j < abs->size - 1; j++) {
+                    abs->personArray[j] = abs->personArray[j + 1]; 
+                } 
+                abs->size--; 
+                cout << "删除成功" << endl; 
+                cout << endl; 
+                return; 
+            }
+        } 
+        cout << " 不存在该联系人" << endl; 
+        system("pause"); 
+        system("cls"); 
+    }
+} 
 
 
+
+
+// 查找联系人
+void searchPerson(Addressbooks* abs) { 
+    system("cls"); 
+    if (abs->size == 0) {
+        cout << "通讯录为空" << endl; 
+        system("pause"); 
+        system("cls"); 
+        return; 
+    }  
+    cout << "请输入你要查找的姓名" << endl; 
+    string name; 
+    cin >> name; 
+    for (int i = 0; i < abs->size; i++) {
+        if (abs->personArray[i].name == name) {
+            cout << "姓名 :" << abs->personArray[i].name << endl; 
+            cout << "性别 :" << abs->personArray[i].sex << endl; 
+            cout << "年龄 :" <<  abs->personArray[i].age << endl; 
+            cout << "电话 :" << abs->personArray[i].phone << endl; 
+            cout << "住址 :" << abs->personArray[i].addr << endl; 
+            cout << endl; 
+            return; 
+        }  
+    } 
+    cout << "未找到该联系人" << endl; 
+    system("pause"); 
+    system("cls"); 
+} 
 
 
 void showMenu() { 
@@ -105,7 +167,7 @@ void showMenu() {
     cout << "*****  4. 查找联系人  *****" << endl; 
     cout << "*****  5. 修改联系人  *****" << endl; 
     cout << "*****  6. 清空联系人  *****" << endl; 
-    cout << "*****  7. 推出通讯录  *****" << endl; 
+    cout << "*****  7. 退出通讯录  *****" << endl; 
     cout << "***************************" << endl; 
 }
 
@@ -136,8 +198,10 @@ int main() {
                 showPerson(&abs); 
                 break; 
             case 3 :        // 3. 删除联系人
+                deletePerson(&abs); 
                 break; 
             case 4 :        // 4. 查找联系人 
+                searchPerson(&abs); 
                 break; 
             case 5 :        // 5. 修改联系人
                 break; 
