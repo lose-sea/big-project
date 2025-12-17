@@ -1,5 +1,6 @@
 #include<iostream> 
 #include<string> 
+#include<cstdlib>
 using namespace std; 
 #define MAX 1000 
 
@@ -16,7 +17,7 @@ struct Person {
 // 设计通讯录结构体
 struct Addressbooks {
     // 通讯录中保存的联系人数组
-    struct Person personArrat[MAX]; 
+    struct Person personArray[MAX]; 
 
     // 通讯录中保存的联系人个数
     int size; 
@@ -34,14 +35,21 @@ void addPerson(struct Addressbooks* abs) {
     cout << "请输入你要添加的联系人姓名" << endl; 
     string name; 
     cin >> name; 
-    abs->personArrat[abs->size].name = name; 
+    abs->personArray[abs->size].name = name; 
 
     cout << "请输入性别 " << endl; 
     while (1) {
-        string sex; 
-        cin >> sex;  
-        if (sex == "男" || sex == "女") {
-            abs->personArrat[abs->size].sex = sex; 
+        cout << "请选择性别 " << endl; 
+        cout << "1. 男" << endl; 
+        cout << "2. 女" << endl;  
+        int select_sex = 0; 
+        cin >> select_sex; 
+        if (select_sex == 1 || select_sex == 2) { 
+            if (select_sex == 1) {
+                abs->personArray[abs->size].sex = "男"; 
+            } else {
+                abs->personArray[abs->size].sex = "女"; 
+            }
             break; 
         } else {
             cout << "输入错误, 请重新输入" << endl; 
@@ -52,35 +60,35 @@ void addPerson(struct Addressbooks* abs) {
     string age; 
     cin >> age; 
     int m_age = stoi(age); 
-    abs->personArrat[abs->size].age = m_age; 
+    abs->personArray[abs->size].age = m_age; 
 
     cout << "请输入联系方式" << endl; 
     string phone; 
     cin >> phone; 
-    abs->personArrat[abs->size].phone = phone; 
+    abs->personArray[abs->size].phone = phone; 
     
     cout << "请输入住址" << endl; 
     string addr; 
     cin >> addr; 
-    abs->personArrat[abs->size].addr = addr; 
+    abs->personArray[abs->size].addr = addr; 
 
     abs->size++;        // 添加成功后通讯录人数加 1
 }  
 
 // 显示联系人
 void showPerson(Addressbooks* abs) {
-    // 判断通讯录人数是否为0
+    // 判断通讯录人数是否为0 
     if (abs->size == 0) {
         cout << "通讯录为空" << endl; 
         return; 
     } 
     cout << "联系人" << endl; 
-    for (auto s : abs->personArrat) {
-        cout << s.name << endl; 
-        cout << s.sex << endl; 
-        cout << s.age << endl; 
-        cout << s.phone << endl; 
-        cout << s.addr << endl; 
+    for (int i = 0; i < abs->size; i++) {
+        cout << abs->personArray[i].name << endl; 
+        cout << abs->personArray[i].sex << endl; 
+        cout << abs->personArray[i].age << endl; 
+        cout << abs->personArray[i].phone << endl; 
+        cout << abs->personArray[i].addr << endl; 
     } 
     system("pause");   // 按任意键继续
     system("cls");      //  清屏
@@ -115,10 +123,12 @@ int main() {
         // 显示菜单
         showMenu(); 
         // 创建用户选择输入的变量
-        int select = 0; 
+        string select;  
+         
         cout << "请选择" << endl; 
         cin >> select; 
-        switch(select) {
+        int m_select = stoi(select);
+        switch(m_select) {
             case 1 :        // 1. 添加联系人 
                 addPerson(&abs);   
                 break; 
