@@ -179,7 +179,7 @@ int main() {
     // 初始化通讯录中当前人员个数
     abs.size = 0; 
 
-
+    system("cls"); 
 
     while(1) {
         // 显示菜单
