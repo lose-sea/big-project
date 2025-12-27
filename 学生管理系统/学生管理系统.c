@@ -8,25 +8,25 @@
 
 #include<stdio.h> 
 #include<stdlib.h> 
-
+#include<limits.h>
 
 
 
 // 学生
 typedef struct student { 
-    char id[__INT_MAX__]; 
-    char name[__INT_MAX__]; 
+    char id[INT_MAX]; 
+    char name[INT_MAX]; 
     char sex[20]; 
     int age; 
     int telephone; 
     int score; 
-    char major[__INT_MAX__]; 
+    char major[INT_MAX]; 
     char garde; 
     char ; 
 }student; 
 
 int studentSize = 0; 
-struct student stu[__INT_MAX__];
+struct student stu[INT_MAX];
 
 void showStudent() {
     if (studentSize == 0) {
